@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="总结," />
+  <meta name="keywords" content="http,有限状态机," />
 
 
 
@@ -59,17 +59,19 @@
 
 
 
-<meta name="description" content="2015年已经过去了,长大后才会觉得时间过得如此飞快.">
+<meta name="description" content="Http报文解析是做后台和客户端都是必须的，其实就是字符串处理，使用查找子串的方式肯定会慢很多，这对追求性能的C++来说是不能接受，所以引入只需要遍历一遍的有限状态机的方式来解析。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2015年总结">
-<meta property="og:url" content="http://melonqi.cn/2016/01/13/2015总结/index.html">
+<meta property="og:title" content="有限状态机解析Http报文">
+<meta property="og:url" content="http://melonqi.cn/2016/01/20/Http-Parser/index.html">
 <meta property="og:site_name" content="MelonQi Blog">
-<meta property="og:description" content="2015年已经过去了,长大后才会觉得时间过得如此飞快.">
-<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/header.png">
-<meta property="og:updated_time" content="2016-01-14T08:06:05.000Z">
+<meta property="og:description" content="Http报文解析是做后台和客户端都是必须的，其实就是字符串处理，使用查找子串的方式肯定会慢很多，这对追求性能的C++来说是不能接受，所以引入只需要遍历一遍的有限状态机的方式来解析。">
+<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/wholeday.png">
+<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/TCP_AC.png">
+<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/ac.png">
+<meta property="og:updated_time" content="2016-01-20T13:54:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2015年总结">
-<meta name="twitter:description" content="2015年已经过去了,长大后才会觉得时间过得如此飞快.">
+<meta name="twitter:title" content="有限状态机解析Http报文">
+<meta name="twitter:description" content="Http报文解析是做后台和客户端都是必须的，其实就是字符串处理，使用查找子串的方式肯定会慢很多，这对追求性能的C++来说是不能接受，所以引入只需要遍历一遍的有限状态机的方式来解析。">
 
 
 
@@ -87,7 +89,7 @@
   };
 </script>
 
-  <title> 2015年总结 | MelonQi Blog </title>
+  <title> 有限状态机解析Http报文 | MelonQi Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -215,7 +217,7 @@
             
             
               
-                2015年总结
+                有限状态机解析Http报文
               
             
           </h1>
@@ -227,8 +229,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-13T11:06:10+08:00" content="2016-01-13">
-              2016-01-13
+            <time itemprop="dateCreated" datetime="2016-01-20T21:53:08+08:00" content="2016-01-20">
+              2016-01-20
             </time>
           </span>
 
@@ -238,8 +240,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/13/2015总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/13/2015总结/" itemprop="commentsCount"></span>
+                <a href="/2016/01/20/Http-Parser/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/Http-Parser/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -258,37 +260,29 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://7xpwmi.com1.z0.glb.clouddn.com/header.png" rel="gallery_cijmw57wn000lhgxedyp7h50q"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://7xpwmi.com1.z0.glb.clouddn.com/header.png" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <p>2015年已经过去了,长大后才会觉得时间过得如此飞快.<br><a id="more"></a><br>崭新的2016已经到来，不知不觉马上就要研究生毕业了。这一年有很多遗憾，也有很多收获，总结一下走过的路，吸取该吸取的，忘掉该忘掉的，勇敢的往前走。</p>
-<h2 id="u627E_u5DE5_u4F5C"><a href="#u627E_u5DE5_u4F5C" class="headerlink" title="找工作"></a>找工作</h2><p>找工作是这一年的重中之重，奈何准备的不充分再加上后劲不足，找工作的结果虽然还算满意，但本可以更好的，比如拿个sp。最后定下来了是去腾讯，很喜欢腾讯的氛围。回想起来这一路走过来，有很多收获，也发现了自己的性格缺陷，能清楚地认识了自己。</p>
-<ol>
-<li>第一个也不算是offer的offer是阿里云给的，内推过程比较顺利，也给了录取意向书，由于最终的薪水问题就没有打算去了。</li>
-<li>同样是内推，腾讯给我的感觉是最好的，部门氛围很轻松，薪水也比较满意就早早的签了两方。</li>
-<li>由于拿到了腾讯和阿里的offer，大有想横扫BAT的想法，后来证明也就是想想。9，10月份找工作的过程比较纠结，面哪跪哪，百度跪了，360跪了。主要是心里不平衡，别人都是sp啊，股票啊，30w+啊，想证明一下自己其实不比他们差。结果被教训了一番有一番，总结原因就是问题出现在了最后一面上，自己准备不足，没有获得足够的青睐。</li>
-<li>于此同时还拿到了农行，华为，楚楚街的offer，女朋友到时候解决户口问题，我就专心挣钱吧。最后就选择了腾讯，也很满意。</li>
-</ol>
-<p>总结一下找工作发现的问题，找工作要早早准备，其实提前半年就可以去leetcode刷刷题，看看书。自己面试没通过的最大原因是最后一面，当考官问我有什么问题想要问的时候，自己总是没有问出很好的问题，给考官的感觉是我没有认真准备。最大的收获是看清了自己的性格特点，自己不是一个帅才，以后就专心做一个将才，脚踏实地地干好每一件事，不打没准备的仗。</p>
-<h2 id="u5B66_u4E1A"><a href="#u5B66_u4E1A" class="headerlink" title="学业"></a>学业</h2><p>说到学业就有点对不起自己的导师，由于研究方向是理论方向的，自己在这方面的思维比较欠缺，光是论文就改了7，8次，怪不得导师说带我真累，哈哈。学理论最大的收获就是做任何事情，都要静下心，全身心的投入，不能太有功利性。做研究要追求根本，要善于总结，最后跳出来看看问题会发现不同的视角。</p>
-<p>写了两篇文章，至今都还没发表，但是对得起自己。</p>
-<h2 id="u7231_u60C5"><a href="#u7231_u60C5" class="headerlink" title="爱情"></a>爱情</h2><p>与自己女朋友走过了第6个年头，等我工作赚到钱了就娶你，等我。深知自己有很多的缺点，也知道自己的情商不是很高，给亲爱的带来了很多困扰。我发现自己已经离不开你了，么么哒。</p>
-<h2 id="u656C_u81EA_u5DF1"><a href="#u656C_u81EA_u5DF1" class="headerlink" title="敬自己"></a>敬自己</h2><p>这一年给我帮助的人很多，老婆，胡哥，军哥，大犇，导师，感谢你们让我快速成长。你真的过好今天，明天就不会差。相信未来是光明的！</p>
+        <p>Http报文解析是做后台和客户端都是必须的，其实就是字符串处理，使用查找子串的方式肯定会慢很多，这对追求性能的C++来说是不能接受，所以引入只需要遍历一遍的有限状态机的方式来解析。<br><a id="more"></a><br>HTTP请求格式:</p>
+<blockquote>
+<p>\<request-line\><br>\<headers\><br>\<blank line\=""><br>[\<request-body\>]</request-body\></blank></headers\></request-line\></p>
+</blockquote>
+<p>说明: 第一行必须是一个请求行(request-line),用来说明请求类型,要访问的资源以及所使用的HTTP版本. 紧接着是一个首部(header)小节,用来说明服务器要使用的附加信息.之后是一个空行. 再后面可以添加任意的其他数据[称之为主体(body)].<br>举例：</p>
+<blockquote>
+<p>GET / HTTP/1.1<br>Accept: <em>/</em><br>Accept-Language: zh-cn<br>Accept-Encoding: gzip, deflate<br>User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)<br>Host: www.google.cn<br>Connection: Keep-Alive</p>
+</blockquote>
+<p>说明: 请求的第一部分说明了该请求是一个GET请求. 该行的第二部分是一个斜杠(/),用来说明请求的是该域名的根目录. 该行的最后一部分说明使用的是HTTP1.1版本(另一个可选荐是1.0).</p>
+<p>第2行是请求的第一个首部,HOST将指出请求的目的地. User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础. 该信息由你的浏览器来定义, 并且在每个请求中自动发送. Connection,通常将浏览器操作设置为Keep-Alive</p>
+<p>第三部分,空行,即使不存在请求主体,这个空行也是必需的.</p>
+<h2 id="u6709_u9650_u72B6_u6001_u673A"><a href="#u6709_u9650_u72B6_u6001_u673A" class="headerlink" title="有限状态机"></a>有限状态机</h2><p>有限状态机(FSM：Finite State Machine)，简称状态机，是表示有限多个状态以及在这些状态之间转移和动作的数学模型。状态存储关于过去的信息，它反映从系统开始到现在时刻输入的变化；转移指示状态变更，用必须满足来确使转移发生的条件来描述它；动作是在给定时刻要进行的活动描述。</p>
+<p>有多种类型的动作：</p>
+<ul>
+<li>进入动作（entry action）：在进入状态时进行；</li>
+<li>退出动作：在退出状态时进行；</li>
+<li>输入动作：依赖于当前状态和输入条件进行；</li>
+<li>转移动作：在特定转移时进行。</li>
+</ul>
+<p>状态机最重要的两个概念是：状态和转移。状态是程序所处的某个状态，比如TCP链接的时候出于要接受链接状态。再某个状态下，如果有特定的条件发生，程序将会转移到另外的状态。<br>举一个生活中最常见的例子：我们每一天的状态基本上都是睡眠，起床，吃饭，工作，吃饭，工作，吃饭，休闲，睡眠；其中睡眠，吃饭，等都是我们所处的状态，状态之间的转移需要一些条件的发生，比如睡眠到起床需要8:00的到来。当然也会有一些动作产生，我们这里就忽略动作。<br>用椭圆代表状态，箭头代表状态转移，箭头上方的文字代表是条件。<br>用状态转移图表示一天的流程：<br><img src="http://7xpwmi.com1.z0.glb.clouddn.com/wholeday.png" alt="一天的流程"><br>最常见的状态机是TCP的状态机。<br><img src="http://7xpwmi.com1.z0.glb.clouddn.com/TCP_AC.png" alt="TCP状态机"></p>
+<h2 id="u89E3_u6790request-line"><a href="#u89E3_u6790request-line" class="headerlink" title="解析request-line"></a>解析request-line</h2><h2 id="u89E3_u6790headers"><a href="#u89E3_u6790headers" class="headerlink" title="解析headers"></a>解析headers</h2><p>Http请求报文中的headers部分是KeyValue格式，具体格式为<code>name: value \r\n</code>. 注意有空白行<code>\r\n</code>，也需要加入到状态机中。<br><img src="http://7xpwmi.com1.z0.glb.clouddn.com/ac.png" alt="有限状态机"></p>
 
       
     </div>
@@ -297,7 +291,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/总结/" rel="tag">#总结</a>
+            <a href="/tags/http/" rel="tag">#http</a>
+          
+            <a href="/tags/有限状态机/" rel="tag">#有限状态机</a>
           
         </div>
       
@@ -306,17 +302,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/12/fix/" rel="next" title="宏碁4736zg起死回生记">
-                <i class="fa fa-chevron-left"></i> 宏碁4736zg起死回生记
+              <a href="/2016/01/16/Makefile/" rel="next" title="Makefile 学习笔记">
+                <i class="fa fa-chevron-left"></i> Makefile 学习笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/14/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -342,8 +334,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/13/2015总结/"
-           data-title="2015年总结" data-url="http://melonqi.cn/2016/01/13/2015总结/">
+      <div class="ds-thread" data-thread-key="2016/01/20/Http-Parser/"
+           data-title="有限状态机解析Http报文" data-url="http://melonqi.cn/2016/01/20/Http-Parser/">
       </div>
     
   </div>
@@ -459,7 +451,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u627E_u5DE5_u4F5C"><span class="nav-number">1.</span> <span class="nav-text">找工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B66_u4E1A"><span class="nav-number">2.</span> <span class="nav-text">学业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u7231_u60C5"><span class="nav-number">3.</span> <span class="nav-text">爱情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u656C_u81EA_u5DF1"><span class="nav-number">4.</span> <span class="nav-text">敬自己</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u6709_u9650_u72B6_u6001_u673A"><span class="nav-number">1.</span> <span class="nav-text">有限状态机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u89E3_u6790request-line"><span class="nav-number">2.</span> <span class="nav-text">解析request-line</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u89E3_u6790headers"><span class="nav-number">3.</span> <span class="nav-text">解析headers</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
