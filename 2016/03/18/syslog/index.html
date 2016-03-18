@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="rsyslog," />
+  <meta name="keywords" content="syslog，C++," />
 
 
 
@@ -59,19 +59,16 @@
 
 
 
-<meta name="description" content="rsyslog是什么
-Rsyslog is an open-source software utility used on UNIX and Unix-like computer systems for forwarding log messages in an IP network. It implements the basic syslog protocol, extends it with">
+<meta name="description" content="syslog是什么简单的说syslog是做日志处理的，用来监控程序的运行状态。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rsyslog的使用">
-<meta property="og:url" content="http://melonqi.cn/2016/03/18/rsys/index.html">
+<meta property="og:title" content="syslog的使用">
+<meta property="og:url" content="http://melonqi.cn/2016/03/18/syslog/index.html">
 <meta property="og:site_name" content="MelonQi Blog">
-<meta property="og:description" content="rsyslog是什么
-Rsyslog is an open-source software utility used on UNIX and Unix-like computer systems for forwarding log messages in an IP network. It implements the basic syslog protocol, extends it with">
-<meta property="og:updated_time" content="2016-03-18T02:34:29.000Z">
+<meta property="og:description" content="syslog是什么简单的说syslog是做日志处理的，用来监控程序的运行状态。">
+<meta property="og:updated_time" content="2016-03-18T07:24:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rsyslog的使用">
-<meta name="twitter:description" content="rsyslog是什么
-Rsyslog is an open-source software utility used on UNIX and Unix-like computer systems for forwarding log messages in an IP network. It implements the basic syslog protocol, extends it with">
+<meta name="twitter:title" content="syslog的使用">
+<meta name="twitter:description" content="syslog是什么简单的说syslog是做日志处理的，用来监控程序的运行状态。">
 
 
 
@@ -89,7 +86,7 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
   };
 </script>
 
-  <title> rsyslog的使用 | MelonQi Blog </title>
+  <title> syslog的使用 | MelonQi Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +214,7 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
             
             
               
-                rsyslog的使用
+                syslog的使用
               
             
           </h1>
@@ -240,8 +237,8 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/18/rsys/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/18/rsys/" itemprop="commentsCount"></span>
+                <a href="/2016/03/18/syslog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/18/syslog/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -262,11 +259,19 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
       
 
       
-        <h2 id="rsyslog_u662F_u4EC0_u4E48"><a href="#rsyslog_u662F_u4EC0_u4E48" class="headerlink" title="rsyslog是什么"></a>rsyslog是什么</h2><blockquote>
-<p>Rsyslog is an open-source software utility used on UNIX and Unix-like computer systems for forwarding log messages in an IP network. It implements the basic syslog protocol, extends it with content-based filtering, rich filtering capabilities, flexible configuration options and adds features such as using TCP for transport.</p>
-</blockquote>
-<p>简单的说rsyslog是做日志处理的，是老版本Linux带的syslog的替代产品。搭配loganalyzer，mysql可以建立日志审计系统，方便对日常的系统的监控。<br><a id="more"></a></p>
-<h2 id="u672C_u5730_u751F_u6210_u65E5_u5FD7"><a href="#u672C_u5730_u751F_u6210_u65E5_u5FD7" class="headerlink" title="本地生成日志"></a>本地生成日志</h2>
+        <h2 id="syslog_u662F_u4EC0_u4E48"><a href="#syslog_u662F_u4EC0_u4E48" class="headerlink" title="syslog是什么"></a>syslog是什么</h2><p>简单的说syslog是做日志处理的，用来监控程序的运行状态。<br><a id="more"></a></p>
+<h2 id="u672C_u5730_u751F_u6210_u65E5_u5FD7"><a href="#u672C_u5730_u751F_u6210_u65E5_u5FD7" class="headerlink" title="本地生成日志"></a>本地生成日志</h2><p>假设已经安装好了syslog或者rsyslog，而且对日志的等级和级别有一定的了解，如果不了解，请参考<a href="http://linux.vbird.org/linux_basic/0570syslog.php" target="_blank" rel="external">鸟哥的Linux私房菜</a>。</p>
+<p>之前开发过的一个C++程序，实现的功能是对每天的流量进行统计，并将结果用syslog写到本地日志中，功能比较简单。</p>
+<h3 id="u6838_u5FC3_u4EE3_u7801_u793A_u4F8B"><a href="#u6838_u5FC3_u4EE3_u7801_u793A_u4F8B" class="headerlink" title="核心代码示例"></a>核心代码示例</h3><p>头文件my_log.hpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> MY_LOG_HPP_</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MY_LOG_HPP_</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_openlog</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *program, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; facility_arg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">my_closelog</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    closelog();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_log_push</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; content)</span></span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>my_log.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"my_log.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_openlog</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *program, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; facility_arg)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> facility = LOG_USER;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="keyword">int</span>&gt; facilities;</span><br><span class="line">    </span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL1"</span>] = LOG_LOCAL1;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL2"</span>] = LOG_LOCAL2;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL3"</span>] = LOG_LOCAL3;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL4"</span>] = LOG_LOCAL4;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL5"</span>] = LOG_LOCAL5;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL6"</span>] = LOG_LOCAL6;</span><br><span class="line">    facilities[<span class="string">"LOG_LOCAL7"</span>] = LOG_LOCAL7;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator it = facilities.find(facility_arg);</span><br><span class="line">    <span class="keyword">if</span> (it != facilities.end())</span><br><span class="line">        facility = it-&gt;second;</span><br><span class="line">    openlog(program, LOG_CONS | LOG_ODELAY, facility); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_log_push</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; content)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">time_t</span> now;</span><br><span class="line">    <span class="keyword">struct</span> tm tm_now;</span><br><span class="line">    <span class="keyword">char</span> timestamp[<span class="number">32</span>];</span><br><span class="line">    now = time(<span class="literal">NULL</span>);</span><br><span class="line">    localtime_r(&amp;now, &amp;tm_now);</span><br><span class="line">    strftime(timestamp, <span class="keyword">sizeof</span> timestamp,<span class="string">"%Y-%m-%d %H:%M:%S"</span>, &amp;tm_now);</span><br><span class="line">    <span class="keyword">int</span> log_type = LOG_NOTICE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *identity = <span class="string">"test"</span>;</span><br><span class="line">    syslog(log_type,<span class="string">"%s|%s"</span>, identity,timestamp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>main.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"my_log.hpp"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	my_openlog(argv[<span class="number">0</span>], <span class="string">"LOG_LOCAL5"</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> content = <span class="string">"hello"</span>;</span><br><span class="line">	my_log_push(content);</span><br><span class="line">	my_closelog();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Makefile</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">CC = g++</span><br><span class="line">RM = /bin/rm</span><br><span class="line">ECHO = /bin/echo</span><br><span class="line">MAIN_EXE = mylog</span><br><span class="line">EXECUTABLES = <span class="variable">$(</span>MAIN_EXE)</span><br><span class="line">SOURCES = <span class="variable">$(</span>wildcard <span class="variable">*.</span>cpp)</span><br><span class="line">OBJECTS = <span class="variable">$(</span>patsubst <span class="variable">%.</span>cpp, <span class="variable">%.</span>o, <span class="variable">$(</span>SOURCES))</span><br><span class="line"></span><br><span class="line">.PHONY: all clean</span><br><span class="line"></span><br><span class="line">all: <span class="variable">$(</span>EXECUTABLES)</span><br><span class="line"></span><br><span class="line"><span class="variable">$(</span>MAIN_EXE): <span class="variable">$(</span>OBJECTS)</span><br><span class="line">        <span class="variable">$(</span>CC) -o <span class="variable">$@</span> <span class="variable">$^</span> </span><br><span class="line"></span><br><span class="line"><span class="variable">%.</span>o: <span class="variable">%.</span>cpp</span><br><span class="line">        <span class="variable">$(</span>CC) -o <span class="variable">$@</span> -c <span class="variable">$&lt;</span> </span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">        - <span class="variable">$(</span>RM) -rf <span class="variable">$(</span>OBJECTS) <span class="variable">$(</span>MAIN_EXE)</span><br></pre></td></tr></table></figure>
+<p><code>make</code>编译，<code>./mylog</code>运行，查看<code>/var/log/messages</code>可以看到刚才打印的日志。</p>
+
       
     </div>
 
@@ -274,7 +279,7 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
       
         <div class="post-tags">
           
-            <a href="/tags/rsyslog/" rel="tag">#rsyslog</a>
+            <a href="/tags/syslog，C/" rel="tag">#syslog，C++</a>
           
         </div>
       
@@ -315,8 +320,8 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/18/rsys/"
-           data-title="rsyslog的使用" data-url="http://melonqi.cn/2016/03/18/rsys/">
+      <div class="ds-thread" data-thread-key="2016/03/18/syslog/"
+           data-title="syslog的使用" data-url="http://melonqi.cn/2016/03/18/syslog/">
       </div>
     
   </div>
@@ -432,7 +437,7 @@ Rsyslog is an open-source software utility used on UNIX and Unix-like computer s
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rsyslog_u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">rsyslog是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u672C_u5730_u751F_u6210_u65E5_u5FD7"><span class="nav-number">2.</span> <span class="nav-text">本地生成日志</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#syslog_u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">syslog是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u672C_u5730_u751F_u6210_u65E5_u5FD7"><span class="nav-number">2.</span> <span class="nav-text">本地生成日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6838_u5FC3_u4EE3_u7801_u793A_u4F8B"><span class="nav-number">2.1.</span> <span class="nav-text">核心代码示例</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
