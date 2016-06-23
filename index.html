@@ -222,6 +222,97 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/23/SplitString/" itemprop="url">
+                  SplitString.cpp
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-23T20:24:22+08:00" content="2016-06-23">
+              2016-06-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/23/SplitString/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/23/SplitString/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SplitString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; v, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; c)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>::size_type pos1, pos2;</span><br><span class="line">  pos2 = s.find(c);</span><br><span class="line">  pos1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">std</span>::<span class="built_in">string</span>::npos != pos2)</span><br><span class="line">  &#123;</span><br><span class="line">    v.push_back(s.substr(pos1, pos2-pos1));</span><br><span class="line"> </span><br><span class="line">    pos1 = pos2 + c.size();</span><br><span class="line">    pos2 = s.find(c, pos1);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(pos1 != s.length())</span><br><span class="line">    v.push_back(s.substr(pos1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/23/nginx/" itemprop="url">
                   nginx转发使用心得
                 </a>
@@ -738,7 +829,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://7xpwmi.com1.z0.glb.clouddn.com/header.png" rel="gallery_cinda9nwq000r66xe4sz4kos0"
+                 href="http://7xpwmi.com1.z0.glb.clouddn.com/header.png" rel="gallery_cipsa9ppm000uptxefwio15qj"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://7xpwmi.com1.z0.glb.clouddn.com/header.png" itemprop="contentUrl"/>
               </a>
@@ -940,7 +1031,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://7xpwmi.com1.z0.glb.clouddn.com/far.png" rel="gallery_cinda9nwn000m66xeh9p56l2c"
+                 href="http://7xpwmi.com1.z0.glb.clouddn.com/far.png" rel="gallery_cipsa9ppj000pptxeipnntqzb"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://7xpwmi.com1.z0.glb.clouddn.com/far.png" itemprop="contentUrl"/>
               </a>
@@ -1020,7 +1111,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1034,7 +1125,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
