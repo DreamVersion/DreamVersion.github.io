@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,腾讯云," />
+  <meta name="keywords" content="C++,Python,命令行解析," />
 
 
 
@@ -59,17 +59,18 @@
 
 
 
-<meta name="description" content="Hexo是基于NodeJS的静态博客,搭建快,维护便利等成为了搭建个人博客的很好的一个选择. 在云服务上也能够搭建属于自己的博客,快来行动吧.">
+<meta name="description" content="程序总是涉及命令行参数解析，尤其是linux下的程序。本文给出了C++版本和Python版本的命令行参数解析方法。其中C++版本使用了boost库。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用腾讯云搭建hexo博客">
-<meta property="og:url" content="http://melonqi.cn/2016/01/12/Hexo-1/index.html">
+<meta property="og:title" content="命令行参数解析C++和Python版本">
+<meta property="og:url" content="http://melonqi.cn/2016/06/23/命令行参数解析C-和Python版本/index.html">
 <meta property="og:site_name" content="MelonQi Blog">
-<meta property="og:description" content="Hexo是基于NodeJS的静态博客,搭建快,维护便利等成为了搭建个人博客的很好的一个选择. 在云服务上也能够搭建属于自己的博客,快来行动吧.">
-<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/far.png">
-<meta property="og:updated_time" content="2016-01-14T08:06:04.000Z">
+<meta property="og:description" content="程序总是涉及命令行参数解析，尤其是linux下的程序。本文给出了C++版本和Python版本的命令行参数解析方法。其中C++版本使用了boost库。">
+<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/boost_program_options1.png">
+<meta property="og:image" content="http://7xpwmi.com1.z0.glb.clouddn.com/boost_program_options2.png">
+<meta property="og:updated_time" content="2016-06-24T15:26:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用腾讯云搭建hexo博客">
-<meta name="twitter:description" content="Hexo是基于NodeJS的静态博客,搭建快,维护便利等成为了搭建个人博客的很好的一个选择. 在云服务上也能够搭建属于自己的博客,快来行动吧.">
+<meta name="twitter:title" content="命令行参数解析C++和Python版本">
+<meta name="twitter:description" content="程序总是涉及命令行参数解析，尤其是linux下的程序。本文给出了C++版本和Python版本的命令行参数解析方法。其中C++版本使用了boost库。">
 
 
 
@@ -87,7 +88,7 @@
   };
 </script>
 
-  <title> 使用腾讯云搭建hexo博客 | MelonQi Blog </title>
+  <title> 命令行参数解析C++和Python版本 | MelonQi Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -215,7 +216,7 @@
             
             
               
-                使用腾讯云搭建hexo博客
+                命令行参数解析C++和Python版本
               
             
           </h1>
@@ -227,8 +228,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-12T11:20:20+08:00" content="2016-01-12">
-              2016-01-12
+            <time itemprop="dateCreated" datetime="2016-06-23T23:51:25+08:00" content="2016-06-23">
+              2016-06-23
             </time>
           </span>
 
@@ -238,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/12/Hexo-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/Hexo-1/" itemprop="commentsCount"></span>
+                <a href="/2016/06/23/命令行参数解析C-和Python版本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/23/命令行参数解析C-和Python版本/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -258,83 +259,17 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://7xpwmi.com1.z0.glb.clouddn.com/far.png" rel="gallery_ciptw50zs000vnwxezhikzbvo"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://7xpwmi.com1.z0.glb.clouddn.com/far.png" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <p>Hexo是基于NodeJS的静态博客,搭建快,维护便利等成为了搭建个人博客的很好的一个选择. 在云服务上也能够搭建属于自己的博客,快来行动吧.<br><a id="more"></a></p>
-<h2 id="u73AF_u5883_u5B89_u88C5"><a href="#u73AF_u5883_u5B89_u88C5" class="headerlink" title="环境安装"></a>环境安装</h2><p>笔者使用腾讯云申请了一台云服务器+一个.cn域名，由于目前还是学生域名免费1年，云服务器1块钱一个月:<a href="http://www.qcloud.com/event/qcloudSchool" target="_blank" rel="external">申请地址</a></p>
-<p>不是学生就老老实实申请域名和服务器，或者使用github。 使用Github搭建博客参考:<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">Github+Hexo搭建博客</a></p>
-<blockquote>
-<p>hexo是一款基于Node.js的静态博客框架.</p>
-<p>hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。先看看tommy是如何吐槽Octopress的 →＿→<a href="https://zespia.tw/blog/2012/10/11/hexo-debut/" target="_blank" rel="external">Hexo颯爽登場</a></p>
-</blockquote>
-<p>Hexo需要依赖包：NodeJS</p>
-<p>安装方式：<br><code>yum install nodejs npm</code></p>
-<p>安装Hexo: <code>npm install -g hexo</code></p>
-<h2 id="u521D_u59CB_u5316_u76EE_u5F55"><a href="#u521D_u59CB_u5316_u76EE_u5F55" class="headerlink" title="初始化目录"></a>初始化目录</h2><p>新建目录，然后进入目录运行初始化命令：</p>
-<ol>
-<li><code>mkdir blog</code></li>
-<li><code>cd blog</code></li>
-<li><code>hexo init</code></li>
-<li><code>npm install</code></li>
-</ol>
-<p>生成静态页面，在blog目录下运行<code>hexo generate</code>，生成静态页面至hexo\public\目录。</p>
-<p>目录结构为：</p>
-<p><img src="http://7xpwmi.com1.z0.glb.clouddn.com/tree.png" alt="目录结构"></p>
-<ul>
-<li>.deploy：执行hexo deploy命令部署到GitHub上的内容目录</li>
-<li>public：执行hexo generate命令，输出的静态网页内容目录</li>
-<li>scaffolds：layout模板文件目录，其中的md文件可以添加编辑</li>
-<li>scripts：扩展脚本目录，这里可以自定义一些javascript脚本</li>
-<li>source：文章源码目录，该目录下的markdown和html文件均会被hexo处理。该页面对应repo的根目录，404文件、favicon.ico文件，CNAME文件等都应该放这里，该目录下可新建页面目录。</li>
-<li>_drafts：草稿文章</li>
-<li>_posts：发布文章</li>
-<li>themes：主题文件目录</li>
-<li>_config.yml：全局配置文件，大多数的设置都在这里</li>
-<li>package.json：应用程序数据，指明hexo的版本等信息，类似于一般软件中的关于按钮</li>
-</ul>
-<blockquote>
-<p>命令必须在init目录下执行，否则不成功，但是也不报错。<br>当你修改文章Tag或内容，不能正确重新生成内容，可以删除hexo\db.json后重试，还不行就到public目录删除对应的文件，重新生成。</p>
-</blockquote>
-<h2 id="u542F_u52A8_u670D_u52A1_u5668"><a href="#u542F_u52A8_u670D_u52A1_u5668" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>执行如下命令，启动本地服务，进行文章预览调试。</p>
-<p><code>hexo server</code></p>
-<p>由于hexo默认使用4000端口，访问自己的服务器的ip来预览, 以笔者的博客为例<a href="/melonqi.cn">MelonQi Blog</a>来预览。端口用<code>hexo server -p 80</code>中修改。</p>
-<blockquote>
-<p>请使用高级浏览器，否则可能…你懂的！</p>
-</blockquote>
-<h2 id="u4E3B_u9898_u5B89_u88C5"><a href="#u4E3B_u9898_u5B89_u88C5" class="headerlink" title="主题安装"></a>主题安装</h2><p>自带的主题可能有人不喜欢，可以挑选自己所喜爱的主题，可参考<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的 Hexo 主题？</a>来选择自己喜欢的主题。</p>
-<p>以<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">litten/hexo-theme-yilia</a>为例, 在blog目录运行<br><code>git clone https://github.com/litten/hexo-theme-yilia themes/yilia</code><br>其中yilia代表的是主题名，可任意命名。</p>
-<p>修改yilia主题的相关信息需修改themes/yilia目录下的_config.yml；</p>
-<p>切换主题需修改blog目录下的_config.yml，<code>theme: yilia</code>， 重启服务器就可以了。</p>
-<h2 id="u53D1_u5E03_u6587_u7AE0"><a href="#u53D1_u5E03_u6587_u7AE0" class="headerlink" title="发布文章"></a>发布文章</h2><p>执行new命令，生成指定名称的文章至hexo\source_posts\postName.md。<br><code>hexo new [layout] &quot;postName&quot; #新建文章</code></p>
-<p>其中layout是可选参数，默认值为post。有哪些layout呢，请到scaffolds目录下查看，这些文件名称就是layout名称。当然你可以添加自己的layout，方法就是添加一个文件即可，同时你也可以编辑现有的layout，比如post的layout默认是hexo\scaffolds\post.md.</p>
-<p>看一下刚才生成的文件hexo\source_posts\postName.md，内容如下：</p>
-<blockquote>
-<p>title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</p>
-<p>date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</p>
-<p>categories: #文章分类目录，可以为空，注意:后面有个空格</p>
-<p>tags: #文章标签，可空，多标签请用格式[tag1,tag2,tag3]，注意:后面有个空格</p>
-<hr>
-<p>这里开始使用markdown格式输入你的正文。</p>
-</blockquote>
-<p>正文用markdown来写，markdown语法参考<a href="http://www.appinn.com/markdown/#link" target="_blank" rel="external">markdown语法</a>。</p>
-<p>更多发表的用法参考<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客|不如</a>。</p>
-
+        <p>程序总是涉及命令行参数解析，尤其是linux下的程序。本文给出了C++版本和Python版本的命令行参数解析方法。其中C++版本使用了boost库。</p>
+<a id="more"></a>
+<h2 id="C++_u7248_u672C_u547D_u4EE4_u884C_u53C2_u6570_u89E3_u6790"><a href="#C++_u7248_u672C_u547D_u4EE4_u884C_u53C2_u6570_u89E3_u6790" class="headerlink" title="C++版本命令行参数解析"></a>C++版本命令行参数解析</h2><p>main.cpp<br>boost库的安装就省去，可自行百度</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> cmdline_error = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    po::<span class="function">options_description <span class="title">options</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    options.add_options()(<span class="string">"help,h"</span>, <span class="string">"Use --help or -h to list all arguments"</span>)</span><br><span class="line">            (<span class="string">"file,f"</span>, po::value&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &gt;()-&gt;composing(), <span class="string">"Get the md5 of a file/files"</span>)</span><br><span class="line">            (<span class="string">"config,c"</span>, po::value&lt;<span class="built_in">string</span>&gt;()-&gt;default_value(<span class="string">"/etc/main.conf"</span>), <span class="string">"Configuration"</span>);</span><br><span class="line"></span><br><span class="line">    po::variables_map vm;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">        po::store(po::parse_command_line(argc, argv, options), vm);</span><br><span class="line">        po::notify(vm);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (po::error &amp;e) &#123;</span><br><span class="line">        cmdline_error = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"help"</span>) || cmdline_error) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Usage:"</span> &lt;&lt; argv[<span class="number">0</span>] &lt;&lt; <span class="string">" [OPTIONS]\n"</span> &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; options &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"file"</span>)) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; files = vm[<span class="string">"file"</span>].as&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.size(); i++) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"File "</span> &lt;&lt; i + <span class="number">1</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; files[i] &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(vm.count(<span class="string">"config"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> config_file = vm[<span class="string">"config"</span>].as&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">"Config File: "</span>&lt;&lt;config_file&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译命令<code>g++ -o main main.cpp -I/usr/local/include -L/usr/local/lib -lboost_program_options</code></p>
+<p>程序效果：<br><img src="http://7xpwmi.com1.z0.glb.clouddn.com/boost_program_options1.png" alt="help"></p>
+<p><img src="http://7xpwmi.com1.z0.glb.clouddn.com/boost_program_options2.png" alt="all"></p>
+<p>还有一些更复杂的用法，比如从文件读配置，options group等请参考<a href="http://www.boost.org/doc/libs/1_61_0/doc/html/program_options/tutorial.html#idp308779504" target="_blank" rel="external">boost_program_options官方文档</a>。</p>
+<h2 id="python_u7684argparse"><a href="#python_u7684argparse" class="headerlink" title="python的argparse"></a>python的argparse</h2>
       
     </div>
 
@@ -342,9 +277,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/C/" rel="tag">#C++</a>
           
-            <a href="/tags/腾讯云/" rel="tag">#腾讯云</a>
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/命令行解析/" rel="tag">#命令行解析</a>
           
         </div>
       
@@ -353,13 +290,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/06/23/SplitString/" rel="next" title="SplitString.cpp">
+                <i class="fa fa-chevron-left"></i> SplitString.cpp
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/12/fix/" rel="prev" title="宏碁4736zg起死回生记">
-                宏碁4736zg起死回生记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -385,8 +322,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/12/Hexo-1/"
-           data-title="使用腾讯云搭建hexo博客" data-url="http://melonqi.cn/2016/01/12/Hexo-1/">
+      <div class="ds-thread" data-thread-key="2016/06/23/命令行参数解析C-和Python版本/"
+           data-title="命令行参数解析C++和Python版本" data-url="http://melonqi.cn/2016/06/23/命令行参数解析C-和Python版本/">
       </div>
     
   </div>
@@ -502,7 +439,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u73AF_u5883_u5B89_u88C5"><span class="nav-number">1.</span> <span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u521D_u59CB_u5316_u76EE_u5F55"><span class="nav-number">2.</span> <span class="nav-text">初始化目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u542F_u52A8_u670D_u52A1_u5668"><span class="nav-number">3.</span> <span class="nav-text">启动服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E3B_u9898_u5B89_u88C5"><span class="nav-number">4.</span> <span class="nav-text">主题安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53D1_u5E03_u6587_u7AE0"><span class="nav-number">5.</span> <span class="nav-text">发布文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C++_u7248_u672C_u547D_u4EE4_u884C_u53C2_u6570_u89E3_u6790"><span class="nav-number">1.</span> <span class="nav-text">C++版本命令行参数解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python_u7684argparse"><span class="nav-number">2.</span> <span class="nav-text">python的argparse</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
